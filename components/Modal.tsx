@@ -59,7 +59,7 @@ const Modal = ({ isModalOpen, setIsModalOpen }: ModalProps) => {
                   </button>
                 </div>
 
-                <section>And here is my content</section>
+                <section>And here is my little content</section>
               </Dialog.Panel>
             </Transition.Child>
           </div>
