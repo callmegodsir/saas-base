@@ -1,11 +1,29 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { ChevronRight, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import dashboard from '@/public/dashboard.png'
+import Modal from '@/components/Modals' // Assurez-vous que le chemin est correct
 
 export default function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    // Vérifie si l'utilisateur a déjà vu le pop-up
+    const hasSeenPopup = localStorage.getItem('hasSeenPopup')
+    if (!hasSeenPopup) {
+      setIsModalOpen(true)
+      localStorage.setItem('hasSeenPopup', 'true')
+    }
+  }, [])
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
+
   return (
     <section className="pt-32 pb-20 bg-gradient-to-b from-white to-orange-50">
       <div className="container mx-auto px-4">
@@ -16,8 +34,10 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
             className="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0"
           >
-            <h1 className="text-5xl font-bold mb-6">Simplify Your Workflow with SaaSify</h1>
-            <p className="text-xl mb-8 max-w-2xl mx-auto lg:mx-0">Boost productivity and streamline your business processes with our cutting-edge SaaS solution. Experience the power of automation and data-driven insights.</p>
+            <h1 className="text-5xl font-bold mb-6">Stack Smarter, Code Better</h1>
+            <p className="text-xl mb-8 max-w-2xl mx-auto lg:mx-0">
+              Ne perdez plus de temps à configurer vos projets. Choisissez une stack SaaS, codez ce qui compte, et déployez facilement.
+            </p>
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
               <Button className="bg-orange-500 hover:bg-orange-600 text-white text-lg px-8 py-3">
                 Start Free Trial <ChevronRight className="ml-2" />
@@ -34,15 +54,27 @@ export default function Hero() {
             className="lg:w-1/2"
           >
             <Image
-              src="/placeholder.svg"
-              alt="SaaSify Dashboard"
+              src={dashboard}
+              alt="Background"
               width={600}
               height={400}
-              className="rounded-lg shadow-2xl"
+              className="rounded-xl"
             />
           </motion.div>
         </div>
       </div>
+
+      {/* Modal */}
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <h2 className="text-2xl font-bold mb-4">Bienvenue sur Smart Stack !</h2>
+        <p className="mb-4">Découvrez nos dernières fonctionnalités en avant-première.</p>
+        <button
+          className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded"
+          onClick={handleCloseModal}
+        >
+          Commencer
+        </button>
+      </Modal>
     </section>
   )
 }
