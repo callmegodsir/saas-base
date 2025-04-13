@@ -1,0 +1,85 @@
+import Link from 'next/link';
+import Head from 'next/head';
+
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>My Website</title>
+        <meta name="description" content="Welcome to chouchou website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <div className="min-h-screen flex flex-col">
+        {/* Header */}
+        <header className="bg-white shadow-md">
+          <nav className="container mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="text-xl font-bold">Logo</div>
+              <div className="hidden md:flex space-x-8">
+                <Link href="/" className="hover:text-blue-600">Home</Link>
+                <Link href="/about" className="hover:text-blue-600">About</Link>
+                <Link href="/services" className="hover:text-blue-600">Services</Link>
+                <Link href="/contact" className="hover:text-blue-600">Contact</Link>
+              </div>
+            </div>
+          </nav>
+        </header>
+
+        {/* Main Content */}
+        <main className="flex-grow container mx-auto px-6 py-8">
+          <section className="mb-12">
+            <h1 className="text-4xl font-bold mb-4">Welcome to Chouchou Website</h1>
+            <p className="text-lg text-gray-600">
+              This is a basic website structure built with Next.js and Tailwind CSS.
+            </p>
+          </section>
+
+          <section className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-semibold mb-4">Feature 1</h2>
+              <p className="text-gray-600">This is a suprise for chouchou.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-semibold mb-4">Feature 2</h2>
+              <p className="text-gray-600">It has been top secret for a while now.</p>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-semibold mb-4">Feature 3</h2>
+              <p className="text-gray-600">Here is why I love chouchou.</p>
+            </div>
+          </section>
+        </main>
+
+        {/* Footer */}
+        <footer className="bg-gray-800 text-white">
+          <div className="container mx-auto px-6 py-8">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-4">About Us</h3>
+                <p className="text-gray-300">Brief description about your company or website.</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
+                <ul className="space-y-2">
+                  <li><Link href="/privacy" className="text-gray-300 hover:text-white">Privacy Policy</Link></li>
+                  <li><Link href="/terms" className="text-gray-300 hover:text-white">Terms of Service</Link></li>
+                  <li><Link href="/contact" className="text-gray-300 hover:text-white">Contact Us</Link></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Contact Info</h3>
+                <p className="text-gray-300">Email: info@example.com</p>
+                <p className="text-gray-300">Phone: (123) 456-7890</p>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+              <p className="text-gray-300">&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </>
+  );
+}
